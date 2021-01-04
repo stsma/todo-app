@@ -4,29 +4,29 @@ import './App.css';
 import Footer from "./components/Footer.js";
 import Header from "./components/Header.js";
 import MainContent from "./components/MainContent.js";
+import ContactCard from './components/ContactCard';
 
 function App() {
   return (    
-      <div>
-        <Header />
+      <div className="contacts">
+          <ContactCard 
+                contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/201", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
+            />
+            
+            <ContactCard 
+                contact={{name: "Fluffykins", imgUrl: "http://placekitten.com/400/200", phone: "(212) 555-2345", email: "fluff@me.com"}}
+            />
+            
+            <ContactCard
+                contact={{name: "Destroyer", imgUrl: "http://placekitten.com/400/300", phone: "(212) 555-3456", email: "ofworlds@yahoo.com"}}
+            />
+            
+            <ContactCard 
+                contact={{name: "Felix", imgUrl: "http://placekitten.com/200/100", phone: "(212) 555-4567", email: "thecat@hotmail.com"}}
+            />
+        {/* <Header />
         <MainContent />
-        <Footer />
-        {/* <ul>
-          <li>
-            <input type="checkbox" id="label1"></input>
-            <label for="label1">Label 1</label>
-          </li>
-          
-          <li>
-            <input type="checkbox" id="label2"></input>
-            <label for="label2">Label 2</label>
-          </li>
-          
-          <li>
-            <input type="checkbox" id="label3"></input>
-            <label for="label3">Label 3</label>
-          </li>
-        </ul> */}
+        <Footer /> */}
       </div>
     );
 }
