@@ -1,50 +1,96 @@
-import logo from './logo.svg';
-import './App.css';
+/*
 
-import Footer from "./components/Footer.js";
-import Header from "./components/Header.js";
-import MainContent from "./components/MainContent.js";
-import ContactCard from './components/ContactCard';
-import Joke from './components/Joke';
+Challenge:
+1. Convert all 3 components to be class-based
+2. Fix the small bug
 
-import jokesData from "./JokesData"
-import productsData from "./vschoolProducts"
-import Product from './components/Product';
+*/
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
 
-import todosData from './todosData';
-import ToDoItem from './components/ToDoItem';
+// #1
+// function App() {
+//     return (
+//         <div>
+//             <Header />
+//             <Greeting />
+//         </div>
+//     )
+// }
 
-function App() {
 
-    const toDoItem = todosData.map(item => 
-        <ToDoItem key={item.id} item={item} />    
-    );
-
-    return(
-        <div className="todo-list">
-            {toDoItem}
+//#1 answer:
+class App extends React.Component{
+    render(){
+        return(
+        <div>
+            <Header username="Stephen" />
+            <Greeting />
         </div>
-    )
+    )}
+}
 
 
-    // const productComponents = productsData.map(product => 
-    //         <Product key={product.id} name={product.name} price={product.price} description={product.description} />
-    //     );
+// #2
+// function Header(props) {
+//     return (
+//         <header>
+//             <p>Welcome, {props.username}!</p>
+//         </header>
+//     )
+// }
 
-    // return(
-    //     <div>
-    //         {productComponents}
-    //     </div>
-    // )
-    // const JokeComponents = jokesData.map(joke => 
-    //     <Joke key={joke.id} question={joke.question} punchLine={joke.punchLine} />
-    // )
+// #2 Answer:
+class Header extends React.Component {
+    render (){
+        return(
+        <header>
+            <p>Welcome, {this.props.username}!</p>
+        </header>
+        )}
+}
 
-    // return(
-    //     <div>
-    //         {JokeComponents}
-    //     </div>
-    // )
+//#region 
+// // #3
+// function Greeting() {
+//     const date = new Date()
+//     const hours = date.getHours()
+//     let timeOfDay
+    
+//     if (hours < 12) {
+//         timeOfDay = "morning"
+//     } else if (hours >= 12 && hours < 17) {
+//         timeOfDay = "afternoon"
+//     } else {
+//         timeOfDay = "night"
+//     }
+//     return (
+//         <h1>Good {timeOfDay} to you, sir or madam!</h1>
+//     )
+// }
+//#endregion
+
+class Greeting extends React.Component {
+    render(){
+        const date = new Date()
+        const hours = date.getHours()
+        let timeOfDay
+        
+        if (hours < 12) {
+            timeOfDay = "morning"
+        } else if (hours >= 12 && hours < 17) {
+            timeOfDay = "afternoon"
+        } else {
+            timeOfDay = "night"
+        }
+
+        return (
+            <h1>Good {timeOfDay} to you, sir or madam!</h1>
+        )
+    }
 }
 
 export default App;
+
+
+// ReactDOM.render(<App />, document.getElementById("root"))
