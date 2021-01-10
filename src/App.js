@@ -1,78 +1,65 @@
 import React from "react";
+import logo from './logo.svg';
+import './App.css';
 
-// Given a stateless functional component, add state to it
-// state should have a property called `isLoggedIn` which is a boolean
-// (true if logged in, false if not)
-// Then, give your best shot at rendering the word "in" if the user is logged in
-// or "out" if the user is logged out.
+import Footer from "./components/Footer.js";
+import Header from "./components/Header.js";
+import MainContent from "./components/MainContent.js";
+import ContactCard from './components/ContactCard';
+import Joke from './components/Joke';
+
+import jokesData from "./JokesData"
+import productsData from "./vschoolProducts"
+import Product from './components/Product';
+
+import todosData from './todosData';
+import ToDoItem from './components/ToDoItem';
+
+/*
+In the previous iteration of this todo list app, we pulled in todos data from a JSON file and mapped over it to display the todo items.
+
+Eventually we'll want to be able to modify the data, which will only happen if we've "loaded" the data in to the component's state
+
+Challenge: Change the <App /> component into a stateful class component and load the imported `todosData` into state.
+*/
 
 class App extends React.Component {
-    constructor(props){
-        super(props);
-        this.state={
-            isLoggedIn: true
+    constructor(){
+        super();
+        this.state = {
+            todosdata: todosData
         }
     }
 
     render(){
-        return (
-            <div>
-                <h1>You are currently logged {this.state.isLoggedIn ? "in" : "out"}</h1>
+        const todos = this.state.todosdata.map(item => <ToDoItem key={item.id} item={item} />);
+
+        return(
+            <div className="todo-list">
+                {todos}
             </div>
-        )}
+        )
+    }
+
+
+    // const productComponents = productsData.map(product => 
+    //         <Product key={product.id} name={product.name} price={product.price} description={product.description} />
+    //     );
+
+    // return(
+    //     <div>
+    //         {productComponents}
+    //     </div>
+    // )
+    // const JokeComponents = jokesData.map(joke => 
+    //     <Joke key={joke.id} question={joke.question} punchLine={joke.punchLine} />
+    // )
+
+    // return(
+    //     <div>
+    //         {JokeComponents}
+    //     </div>
+    // )
 }
-
-// import React, { Component } from "react";
-
-// // Challenge:
-// // Given an incomplete class-based component without a constructor, 
-// // add a constructor and initialize state to fix the broken component.
-
-// class App extends Component {
-//     constructor(){
-//         super();
-//         this.state={
-//             name: "Sally",
-//             age: 32
-//         }
-//     }
-
-//     render(){
-//         return (
-//             <div>
-//                 <h1>{this.state.name}</h1>
-//                 <h3>{this.state.age} years old</h3>
-//             </div>
-//         )
-//     }
-// }
-
-// class App extends React.Component{
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             answer: "No"
-//         }
-//     }
-
-//     render(){
-//         return(
-//             <div>
-//                 <h1>Is state important to know? {this.state.answer}</h1>
-//                 <ChildComponent answer={this.state.answer}/>
-//             </div>
-//         )
-//     }
-// }
-
-// class ChildComponent extends React.Component{
-//     render(){
-//         return(
-//             <div>
-//                 {this.props.answer}
-//             </div>
-//         )
-//     }
-// }
 
 export default App;
