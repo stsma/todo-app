@@ -7,27 +7,48 @@ class App extends Component {
     }
 
     //1.
+    // component did just mount. Method will run once while the component is showing up the screen.
+    //this will not reload during re-render.
     componentDidMount(){
-
+        //API calls
     }
 
-    //2
+    //2.
     //deprecated
     componentWillReceiveProps(nextProps){
-        if(nextProps.whatever !== this.props.whatever)
-        {}
+        // if(nextProps.whatever !== this.props.whatever)
+        // {}   
     }
 
-    //3
+    //3.
+    //deprecated
     shouldComponentUpdate(nextProps, nextState){
         //return true if want to udate
         //return false if not
     }
 
-    //4
+    //4.
+    //deprecated
     componentWillUnmount(){
         // teardown or cleanup your code before your component disappears
         // (E.g. remove event listeners)
+    }
+
+    //5.
+    //new
+    //discourages to use by React team.
+    static getDerivedStateFromProps(props, state){
+        //return the new, updated state based upon the props
+        // https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
+        // https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+    }
+
+    6.
+    //new
+    //not commonly used.
+    getSnapshotBeforeUpdate(){
+        //create a backup of the current way things are
+        // https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate
     }
     
     render() {
