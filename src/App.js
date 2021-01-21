@@ -1,41 +1,26 @@
-// https://scrimba.com/g/greacthooks
+import React, {Component} from "react"
+import Conditional from "./components/Conditional"
 
-import React from "react"
-import randomcolor from "randomcolor"
-
-class App extends React.Component {
+class App extends Component {
     constructor() {
         super()
         this.state = {
-            count: 0,
-            color: ""
+            isLoading: true
         }
-        this.increment = this.increment.bind(this)
     }
     
-    increment() {
-        this.setState(prevState => {
-            return {
-                count: prevState.count + 1
-            }
-        })
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if(this.state.count !== prevState.count){
-            const newColor = randomcolor();
-            this.setState({color: newColor})
-        }
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                isLoading: false
+            })
+        }, 1500)
     }
     
     render() {
-        console.log("Render")
         return (
             <div>
-                <h1 style={{color: this.state.color}}>{this.state.count}</h1>
-                <button onClick={this.increment}>
-                    Increment!
-                </button>
+                <h1>{ this.state.isLoading ? "Loading..." : <Conditional /> }</h1>
             </div>
         )
     }
