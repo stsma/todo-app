@@ -5,22 +5,18 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            isLoading: true
+            unreadMessages: ["a", "b"]
         }
     }
-    
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                isLoading: false
-            })
-        }, 1500)
-    }
-    
+    // &&
+    // false && false
     render() {
         return (
             <div>
-                <h1>{ this.state.isLoading ? "Loading..." : <Conditional /> }</h1>
+                {
+                    this.state.unreadMessages.length > 0 && 
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
+                }
             </div>
         )
     }
