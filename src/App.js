@@ -16,11 +16,14 @@ class App extends Component {
         fetch("https://swapi.dev/api/people/1")
             .then(response => response.json())
             .then(data => {
-                this.setState(d => {
-                    return{
-                        character: data
-                    }
-                })
+                console.log(data)
+                // {
+                // this.setState(d => {
+                //     return{
+                //         character: data
+                //     }
+                // }
+                // )
             })
     }
     
