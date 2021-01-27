@@ -5,44 +5,33 @@ import React, {Component} from "react"
 // https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
 
 class App extends Component {
+    
     constructor() {
         super()
         this.state = {
-            loading: false,
-            character: {}
+            firstName: "",
+            lastName: ""
         }
+        this.handleChange = this.handleChange.bind(this)
     }
     
-    componentDidMount() {
-        this.setState(prevState => {
-            return { loading: true }
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
         })
-
-        setTimeout(() => {
-            fetch("https://swapi.dev/api/people/1")
-                .then(response => response.json())
-                .then(data => {
-                    this.setState(
-                        {
-                            loading: false,
-                            character: data
-                        })
-                })
-                
-            this.setState(prevState => {
-                return { loading: false }
-            })
-        }, 1000);
     }
     
     render() {
-            const text = this.state.loading ? "loading..." : this.state.character.name;
-            return (
-                <div>
-                    <p>{text}</p>
-                </div>
-            )
+        return (
+            <form>
+                <input type="text" name="firstName" placeholder="First Name" onChange={this.handleChange} />
+                <br />
+                <input type="text" name="lastName" placeholder="Last Name" onChange={this.handleChange} />
+                <h1>{this.state.firstName} {this.state.lastName}</h1>
+            </form>
+        )
     }
 }
+
 
 export default App
