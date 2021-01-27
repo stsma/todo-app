@@ -15,22 +15,31 @@ class App extends Component {
     
     componentDidMount() {
         this.setState(prevState => {
-            loading: true
+            return { loading: true }
         })
 
-        fetch("https://swapi.dev/api/people/1")
-            .then(response => response.json())
-            .then(data => {
-                this.setState(
-                    {character: data})
+        setTimeout(() => {
+            fetch("https://swapi.dev/api/people/1")
+                .then(response => response.json())
+                .then(data => {
+                    this.setState(
+                        {
+                            loading: false,
+                            character: data
+                        })
+                })
+                
+            this.setState(prevState => {
+                return { loading: false }
             })
+        }, 1000);
     }
     
     render() {
-            const text = this.state.loading ? "loading..." : this.state.character.name
+            const text = this.state.loading ? "loading..." : this.state.character.name;
             return (
                 <div>
-                    <p>{tex}</p>
+                    <p>{text}</p>
                 </div>
             )
     }
