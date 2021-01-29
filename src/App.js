@@ -1,103 +1,89 @@
 import React, {Component} from "react"
 
-// https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
-// https://swapi.co/
-// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+/**
+ * Challenge: Wire up the partially-finished travel form so that it works!
+ * Remember to use the concept of controlled forms
+ * https://reactjs.org/docs/forms.html
+ * 
+ * All information should be populating the text below the form in real-time
+ * as you're filling it out
+ * 
+ * This exercise is adapted from the V School curriculum on vanilla JS forms:
+ * https://coursework.vschool.io/travel-form/
+ * 
+ * All of our challenges and learning resources are open for the public
+ * to play around with and learn from at https://coursework.vschool.io
+ */
 
 class App extends Component {
-    
     constructor() {
         super()
         this.state = {
             firstName: "",
             lastName: "",
-            isFriendly: true,
-            gender:null,
-            favColor: "blue"
+            age:0,
+            gender: null,
+            location: "",
+            restrictions: ""
         }
-        this.handleChange = this.handleChange.bind(this)
+
+        this.handleChange = this.handleChange.bind(this);
     }
-    
-    handleChange(event) {
-        // this.setState({
-        //     [event.target.name]: event.target.value
-        // })
-        console.log(event.target);
-        const {name, value, type, checked} = event.target;
-        type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
+
+    handleChange(event){
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+        console.log(this.state);
     }
     
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
-                <input 
-                    type="text" 
-                    value={this.state.firstName} 
-                    name="firstName" 
-                    placeholder="First Name" 
-                    onChange={this.handleChange}
-                />
-                <br/>
-                <input 
-                    type="text" 
-                    value={this.state.lastName} 
-                    name="lastName" 
-                    placeholder="Last Name" 
-                    onChange={this.handleChange}
-                />
-
-                <h1>{this.state.firstName} {this.state.lastName}</h1>
+            <main>
+                <form>
+                    <input 
+                        name="firstName" 
+                        placeholder="First Name" 
+                        value={this.state.firstName}
+                        onChange={this.handleChange}
+                    />
+                    <br />
+                    <input 
+                        name="lastName" 
+                        placeholder="Last Name" 
+                        onChange={this.handleChange}
+                    />
+                    <br />
+                    <input 
+                        name="age" 
+                        placeholder="Age" 
+                        onChange={this.handleChange} 
+                    />
+                    <br />
                     
-                <textarea 
-                    value="Some default value."
-                    onChange={this.handleChange}
-                /> 
-                <br/>                
-                <input 
-                    type="checkbox" 
-                    name="isFriendly"
-                    checked={this.state.isFriendly}
-                    onChange={this.handleChange}
-                />Is Friendly?
-                <br/>
-                <label>
-                    <input 
-                        type="radio" 
-                        name="gender"
-                        value="male"
-                        checked={this.state.gender === "male"}
-                        onChange={this.handleChange}
-                    /> Male
-                </label>
-                
-                <label>
-                    <input 
-                        type="radio" 
-                        name="gender"
-                        value="female"
-                        checked={this.state.gender === "female"}
-                        onChange={this.handleChange}
-                    /> Female
-                </label>
-
-                <br/>
-
-                <h2>Your favorite color is {this.state.favColor}</h2>
-                <select onChange={this.handleChange}
-                    name="favColor">
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="orange">Orange</option>
-                </select>
-
-                <h2>{this.state.gender === null ? "" : 
-                    "You are a " + this.state.gender }</h2>
-
-                <button>Submit</button>
-            </form>
+                    {/* Create radio buttons for gender here */}
+                    <br />
+                    
+                    {/* Create select box for location here */}
+                    <br />
+                    
+                    {/* Create check boxes for dietary restrictions here */}
+                    <br />
+                    
+                    <button>Submit</button>
+                </form>
+                <hr />
+                <h2>Entered information:</h2>
+                <p>Your name: {this.state.firstName} {this.state.lastName}</p>
+                <p>Your age: {this.state.age}</p>
+                <p>Your gender: {this.state.gender}</p>
+                <p>Your destination: {this.state.location}</p>
+                <p>
+                    Your dietary restrictions: 
+                    {this.state.restrictions}
+                </p>
+            </main>
         )
     }
 }
-
 
 export default App
