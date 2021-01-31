@@ -21,8 +21,8 @@ class App extends Component {
         this.state = {
             firstName: "",
             lastName: "",
-            age:0,
-            gender: null,
+            age:"",
+            gender: undefined,
             location: "",
             restrictions: ""
         }
@@ -59,8 +59,22 @@ class App extends Component {
                         onChange={this.handleChange} 
                     />
                     <br />
-                    
-                    {/* Create radio buttons for gender here */}
+                    <label>
+                        <input 
+                            type="radio" 
+                            name="gender"
+                            value="male"
+                            checked={this.state.gender === "male"}
+                            onChange={this.handleChange} />Male       
+                    </label>             
+                    <label>         
+                        <input 
+                            type="radio" 
+                            name="gender"
+                            value="female"
+                            checked={this.state.gender === "female"}
+                            onChange={this.handleChange} />Female       
+                    </label>
                     <br />
                     
                     {/* Create select box for location here */}
