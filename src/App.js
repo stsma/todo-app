@@ -23,16 +23,28 @@ class App extends Component {
             lastName: "",
             age:"",
             gender: undefined,
-            location: "",
-            restrictions: ""
+            destination: "",
+            dietaryRestrictions: {
+                isVegan: false,
+                isKosher: false,
+                isLactoseFree: false
+            }
         }
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event){
-        const { name, value } = event.target
-        this.setState({ [name]: value })
+        const { name, value, type, checked } = event.target
+        type === "checkbox" ? 
+            this.setState(prevState => {
+                return {
+                dietaryRestrictions: {
+                    ...prevState.dietaryRestrictions,
+                    [name]: checked
+                }
+            }}) :  this.setState({ [name]: value })
+
         console.log(this.state);
     }
     
@@ -77,12 +89,49 @@ class App extends Component {
                     </label>
                     <br />
                     
-                    {/* Create select box for location here */}
+                    <select 
+                        value={this.state.destination} 
+                        name="destination" 
+                        onChange={this.handleChange}>
+
+                        <option value="">-- Please Choose a destination --</option>
+                        <option value="germany">Germany</option>
+                        <option value="norway">Norway</option>
+                        <option value="north pole">North Pole</option>
+                        <option value="south pole">South Pole</option>
+                    </select>
                     <br />
                     
-                    {/* Create check boxes for dietary restrictions here */}
+                    <label>
+                        <input 
+                            type="checkbox"
+                            name="isVegan"
+                            onChange={this.handleChange}
+                            checked={this.state.dietaryRestrictions.isVegan}
+                        /> Vegan?
+                    </label>
                     <br />
                     
+                    <label>
+                        <input 
+                            type="checkbox"
+                            name="isKosher"
+                            onChange={this.handleChange}
+                            checked={this.state.dietaryRestrictions.isKosher}
+                        /> Kosher?
+                    </label>
+                    <br />
+                    
+                    <label>
+                        <input 
+                            type="checkbox"
+                            name="isLactoseFree"
+                            onChange={this.handleChange}
+                            checked={this.state.dietaryRestrictions.isLactoseFree}
+                        /> Lactose Free?
+                    </label>
+                    <br />
+
                     <button>Submit</button>
                 </form>
                 <hr />
@@ -90,11 +139,14 @@ class App extends Component {
                 <p>Your name: {this.state.firstName} {this.state.lastName}</p>
                 <p>Your age: {this.state.age}</p>
                 <p>Your gender: {this.state.gender}</p>
-                <p>Your destination: {this.state.location}</p>
-                <p>
-                    Your dietary restrictions: 
-                    {this.state.restrictions}
-                </p>
+                <p>Your destination: {this.state.destination}</p>
+                <div>
+                    Your dietary restrictions:
+                    <br/>
+                    <p>{this.state.dietaryRestrictions.isVegan ? "Vegan" : ""}</p>
+                    <p>{this.state.dietaryRestrictions.isKosher ? "Kosher" : ""}</p>
+                    <p>{this.state.dietaryRestrictions.isLactoseFree ? "Lactose Free" : ""}</p>
+                </div>
             </main>
         )
     }
