@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
+import './style.css';
 import App from './App';
+import AppMeme from './AppMeme';
 import reportWebVitals from './reportWebVitals';
 
 import MyInfo from "./components/MyInfo.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <AppMeme />
   </React.StrictMode>,
   document.getElementById('root')
   // ReactDOM.render(<App />, document.getElementById("root"))

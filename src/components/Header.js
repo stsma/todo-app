@@ -1,12 +1,12 @@
-import { React } from "react";
-import { ReactDom } from "react-dom";
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-function Header(){
-    return(
-        <div>
-            <header className="navbar">This is the header</header>
-        </div>
-    )
+class Header extends Component(){
+    render(){
+        return(
+            <div></div>
+        )
+    }
 }
 
-export default Header
+export default Header;
