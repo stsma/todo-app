@@ -1,18 +1,41 @@
+
+/**
+ * Other modern/advanced React features/topics to learn:
+ * 
+ * Official React Context API - https://reactjs.org/docs/context.html
+ * Error Boundaries - https://reactjs.org/docs/error-boundaries.html
+ * render props - https://reactjs.org/docs/render-props.html
+ * Higher Order Components - https://reactjs.org/docs/higher-order-components.html
+ * React Router - https://reacttraining.com/react-router/core/guides/philosophy
+ * React Hooks - https://reactjs.org/docs/hooks-intro.html
+ * React lazy, memo, and Suspense - https://reactjs.org/blog/2018/10/23/react-v-16-6.html
+ */
+
+
 import React, { Component } from "react";
 
 class MemeGenerator extends Component{
-    constructor(){
-        super();
-        this.state = {
-            topText: "",
-            bottomText: "",
-            randomImage: "http://i.imgflip.com/1bij.jpg",
-            allMemeImgs: []
-        }
 
-        this.HandleChange = this.HandleChange.bind(this)
-        this.HandleSubmit = this.HandleSubmit.bind(this)
-    }
+    //in modern version, constructor can be removed if you use this state type initialization
+    state = {
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg",
+        allMemeImgs: []
+    };
+
+        // constructor(){
+        //     super();
+        //     this.state = {
+        //         topText: "",
+        //         bottomText: "",
+        //         randomImage: "http://i.imgflip.com/1bij.jpg",
+        //         allMemeImgs: []
+        //     }
+
+            // this.HandleChange = this.HandleChange.bind(this)
+            // this.HandleSubmit = this.HandleSubmit.bind(this)
+        // }
 
     render (){
         return(
@@ -32,18 +55,29 @@ class MemeGenerator extends Component{
                 });
     }
 
-    HandleChange(event){
+    //changed to lambda expression, no need to bind in constructor
+    HandleChange = (event) => {
         const {name, value, placeholder} = event.target
         this.setState(prevState => {
             return{
                 [name]: value
-            }
-        })
-
-        console.log(this.state);
+            }});
     }
 
-    HandleSubmit(event){
+    // HandleChange(event){
+    //     const {name, value, placeholder} = event.target
+    //     this.setState(prevState => {
+    //         return{
+    //             [name]: value
+    //         }
+    //     })
+
+    //     console.log(this.state);
+    // }
+
+    
+    //changed to lambda expression, no need to bind in constructor
+    HandleSubmit = (event) => {
         event.preventDefault();
         
         const randNum = Math.floor(Math.random() * this.state.randomImage.length);
@@ -52,6 +86,16 @@ class MemeGenerator extends Component{
 
         this.setState({ randomImage: randImg } )
     }
+
+    // HandleSubmit(event){
+    //     event.preventDefault();
+        
+    //     const randNum = Math.floor(Math.random() * this.state.randomImage.length);
+    //     const randImg = this.state.allMemeImgs[randNum].url
+    //     console.log(randImg);   
+
+    //     this.setState({ randomImage: randImg } )
+    // }
 
     render(){
         return(
