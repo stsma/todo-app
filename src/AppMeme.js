@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import Header from "./components/Header";
+import MemeGenerator from "./components/MemeGenerator";
 
  function AppMeme() {
      return(
-         <div></div>
+         <div>
+            <Header />
+            <MemeGenerator />
+         </div>
      )
  }
 
