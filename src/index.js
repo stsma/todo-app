@@ -10,8 +10,8 @@ import MyInfo from "./components/MyInfo.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <AppMeme />
+    <App />
+    {/* <AppMeme /> */}
   </React.StrictMode>,
   document.getElementById('root')
   // ReactDOM.render(<App />, document.getElementById("root"))
