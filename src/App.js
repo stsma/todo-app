@@ -1,12 +1,12 @@
+import { render } from "@testing-library/react"
 import React, { useState } from "react"
 
-function App() {
-    const value = useState("Yes");
-    console.log(value);
+function App(){
+    const [ answer ] = useState("Yes")
 
-    return(
+    return (
         <div>
-            <h1>Is state important to know? {value[0]}</h1>
+            <h2>Is State important to know? {answer}</h2>
         </div>
     )
 }
