@@ -1,31 +1,45 @@
-import React, { useState } from "react"
+import React, { useState, useEffect  } from "react"; 
+import randomColor from 'randomcolor';
 
-function App() {
-    const value = useState("Yes");
-    console.log(value);
+// Convert the class below to a functional component that uses the useState hook to initalize a count vartiable to 0 and display the count on the screen.
+// Don't worry about the part where the button changes the count quite yet, that's what you're here to learn about!
+
+function App(){
+    const [ count, setCount ] = useState(0);
+    const [ color, setColor ] = useState("")
+
+    // 
+
+    //function increment(){
+    //    setCount(prevCount => prevCount + 1);
+    //}
+
+    //function decrement(){
+    //    setCount(prevCount => prevCount - 1);
+    //}
+
+    useEffect(() => {
+        //setColor(prevColor => prevColor = randomColor());
+        const intervalId = setInterval(() => { 
+            setCount(prevCount => prevCount + 1)}
+            , 1000)
+
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, [])
+
+    useEffect(() => {
+        setColor(() => randomColor());
+    }, [count])
 
     return(
-        <div>
-            <h1>DONE!!!</h1>
+        <div>COURSE DONE!
+            {/* <h1 style={{color:color}}>{count}</h1> */}
+            {/*<button onClick={increment}>Increment</button>*/}
+            {/*<button onClick={decrement}>Decrement</button>*/}
         </div>
     )
 }
 
-// class App extends React.Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             answer: "Yes"
-//         }
-//     }
-    
-//     render() {
-//         return (
-//             <div>
-//                 <h1>Is state important to know? {this.state.answer}</h1>
-//             </div>
-//         )
-//     }
-// }
-
-export default App
+export default App;
